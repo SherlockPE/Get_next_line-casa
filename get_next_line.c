@@ -6,18 +6,46 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/09 09:22:24 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:41:59 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 20
+#endif
+
+static int ft_strlen(char *string)
+{
+    int i;
+    
+    i = 0;
+    while (string[i])
+        i++;
+    return (i);
+}
 
 char	*get_next_line(int fd)
 {
-    char *lines;
-    char bufer[20];
+    int     read_value;
+    char    *lines;
+    char    *buffer[sizeof(BUFFER_SIZE)];
 
-    lines = read(fd, bufer, 19);
+    //Leer archivo BUFFER_SIZE cantidad de veces
+    read_value = (int)read(fd, buffer, BUFFER_SIZE);
+    if (read_value == 0)
+        return (0);
+    
+    //Guardar el contenido del buffer en un char*
+    lines = buffer;
+    
+    //Memoria
+    int size = ft_strlen(lines);
+    char *heap_lines = malloc(size);
 
-    return(lines);
+    //Copiar datos
+    int i = 0;
+    while (size--)
+        heap_lines[size] = lines[size];
+    return (heap_lines);
 }
