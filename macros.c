@@ -6,15 +6,11 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:50:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/09 12:22:31 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:12:26 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
+#include "get_next_line.h"
 
 int main(void)
 {
