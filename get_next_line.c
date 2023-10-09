@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/09 12:41:59 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:51:09 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,37 @@
 # define BUFFER_SIZE 20
 #endif
 
-static int ft_strlen(char *string)
+static int	ft_strlen(char *string)
 {
-    int i;
-    
-    i = 0;
-    while (string[i])
-        i++;
-    return (i);
+	int	i;
+
+	i = 0;
+	while (string[i])
+		i++;
+	return (i);
 }
 
 char	*get_next_line(int fd)
 {
-    int     read_value;
-    char    *lines;
-    char    *buffer[sizeof(BUFFER_SIZE)];
+	int		read_value;
+	char	*lines;
+	char	*buffer[sizeof(BUFFER_SIZE)];
+	int		size;
+	char	*heap_lines;
+	int		i;
 
-    //Leer archivo BUFFER_SIZE cantidad de veces
-    read_value = (int)read(fd, buffer, BUFFER_SIZE);
-    if (read_value == 0)
-        return (0);
-    
-    //Guardar el contenido del buffer en un char*
-    lines = buffer;
-    
-    //Memoria
-    int size = ft_strlen(lines);
-    char *heap_lines = malloc(size);
-
-    //Copiar datos
-    int i = 0;
-    while (size--)
-        heap_lines[size] = lines[size];
-    return (heap_lines);
+	// Leer archivo BUFFER_SIZE cantidad de veces
+	read_value = (int)read(fd, buffer, BUFFER_SIZE);
+	if (read_value == 0)
+		return (0);
+	// Guardar el contenido del buffer en un char*
+	lines = buffer;
+	// Memoria
+	size = ft_strlen(lines);
+	heap_lines = malloc(size);
+	// Copiar datos
+	i = 0;
+	while (size--)
+		heap_lines[size] = lines[size];
+	return (heap_lines);
 }

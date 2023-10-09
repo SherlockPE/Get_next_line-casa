@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/09 12:45:59 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:51:04 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 
 	line = get_next_line(fd);
 	printf("%s", line);
-	
+
 	free(line);
 	close(fd);
 	return (0);
