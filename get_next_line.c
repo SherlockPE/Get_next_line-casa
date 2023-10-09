@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 {
 	int		read_value;
 	char	*lines;
-	char	*buffer[sizeof(BUFFER_SIZE)];
+	char	*buffer[BUFFER_SIZE];
 	int		size;
 	char	*heap_lines;
 	int		i;
