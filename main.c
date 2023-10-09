@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/09 09:22:24 by flopez-r         ###   ########.fr       */
+/*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
+/*   Updated: 2023/10/09 09:36:49 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-char	*get_next_line(int fd)
+int main(void)
 {
-    char *lines;
-    char bufer[20];
+	int		file_descriptor;
+	char	*archive;
+	char	*path = "prueba.txt";
 
-    lines = read(fd, bufer, 19);
+	file_descriptor = open(path, O_RDONLY);
+	archive = get_next_line(file_descriptor);
+	
+	if (archive == -1)
+		return (0);
+	
 
-    return(lines);
+
+	printf("%s\n", archive);
+	return 0;
 }
