@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/10 16:11:03 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:15:03 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*get_next_line(int fd)
 	// int		size;
 	// char	*heap_lines;
 	// int		i;
-
-	// //
 
 
 	// // Leer archivo BUFFER_SIZE cantidad de veces
