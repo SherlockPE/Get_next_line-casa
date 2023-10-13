@@ -6,7 +6,7 @@
 
 all:
 	gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c
-	./a.out
+	./a.out prueba.txt
 
 size:
 	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c get_next_line.h
