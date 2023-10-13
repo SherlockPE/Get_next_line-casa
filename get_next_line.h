@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:52 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/10 16:05:51 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/13 20:55:42 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # include <unistd.h>
 
 
+char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+
 char	*get_next_line(int fd);
 
 #endif

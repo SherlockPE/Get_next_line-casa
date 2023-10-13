@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:37 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/10 16:05:42 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/13 20:44:42 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] != (unsigned char)c)
+		return (0);
+	return ((char *)&s[i]);
+}
 
 size_t	ft_strlen(const char *s)
 {
@@ -22,22 +38,55 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int		size;
-	int		i;
-	char	*new;
+	void	*ptr;
 
-	i = 0;
-	size = ft_strlen(s1);
-	new = (char *)malloc(size + 1);
-	if (!new)
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (0);
-	while (i < size)
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, '\0', n);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*b2;
+
+	b2 = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+		b2[i++] = c;
+	return (b2);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char		*new_string;
+	size_t		i;
+
+	if (s == 0)
+		return (0);
+	i = ft_strlen(s);
+	if (start >= i)
 	{
-		new[i] = s1[i];
-		i++;
+		new_string = ft_calloc(1, 1);
+		return (new_string);
 	}
-	new[i] = '\0';
-	return (new);
+	else if (i - start < len)
+		new_string = ft_calloc((i - start) + 1, 1);
+	else
+		new_string = ft_calloc(len + 1, 1);
+	if (new_string == 0)
+		return (0);
+	i = 0;
+	while (i < len && s[start])
+		new_string[i++] = s[start++];
+	return (new_string);
 }
