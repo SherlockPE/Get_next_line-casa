@@ -6,7 +6,7 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/13 21:03:35 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/13 22:01:05 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@ char	*get_next_line(int fd)
 {
 	int data;
 	int start;
-	static void *buffer;
-	char position;
+	int len;
+	char buffer[BUFFER_SIZE];
+	char *result;
 
-	data = read(fd, buffer, BUFFER_SIZE);
-	if (!data)
+	
+	data = read(fd, &buffer, BUFFER_SIZE);
+	if (data == -1)
+		printf("Error al leer el archivo (read)");
 		return (0);
 
+	printf("%s", buffer);
 	start = 0;
-	position = ft_strchr((const char *)buffer, '\n');
-	
+	len = ft_strchr(buffer, '\n');
+	result = ft_substr(buffer, start, len);
+	return (result);
 }

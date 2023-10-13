@@ -6,7 +6,7 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/13 20:08:42 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/13 21:42:13 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	main(void)
 	fd = open(path, O_RDONLY);
 
 	if (fd == -1)
+		printf("Error al abrir el archivo (open)");
 		return (0);
 
 	line = get_next_line(fd);
 	printf("%s", line);
 
-	// close(fd);
+	close(fd);
 	free(line);
 	return (0);
 

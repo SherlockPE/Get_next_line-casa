@@ -6,26 +6,26 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:37 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/13 20:44:42 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/13 21:13:41 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int   ft_strchr(const char *s, int c)
 {
-	int	i;
+    int    i;
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (s[i] != (unsigned char)c)
-		return (0);
-	return ((char *)&s[i]);
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == (unsigned char)c)
+            return (i);
+        i++;
+    }
+    if (s[i] != (unsigned char)c)
+        return (0);
+    return (i);
 }
 
 size_t	ft_strlen(const char *s)
