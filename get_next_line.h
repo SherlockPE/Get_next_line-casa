@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:52 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 14:59:45 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:01:05 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
-int   ft_strchr(const char *s, int c);
+// int   ft_strchr(const char *s, int c);
+char   *ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 char	*get_next_line(int fd);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

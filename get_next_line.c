@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 16:53:35 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:00:39 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,36 @@
 char	*get_next_line(int fd)
 {
 	int data;
-	int start;
-	int len;
-	char *result;
-	static char buffer[BUFFER_SIZE];
-
-	//------INICIO------//
-	printf("El programa está ejecutando get_next_line\n");
+	char temp[BUFFER_SIZE + 1];
+	static char *buffer;
 
 	//------LEER EL ARCHIVO------//
-	data = read(fd, buffer, BUFFER_SIZE);
-	if (data == -1)
+	while (!ft_strchr(buffer, '\n'))
 	{
-		printf("Error al leer el archivo (read)");
-		return (0);
+		data = read(fd, temp, BUFFER_SIZE);
+		if (data == -1)
+			return (0);
+		buffer = ft_strjoin(buffer, temp);
 	}
-	printf("Archivo leido bien (read)\n");
-
+	
 	//------VALOR DE LA LECTURA------//
 	printf("Valor del buffer: %s\n", buffer);
+
+
 	
 	//------CREAR SUBSTRING------//
-	start = 0;
+	
+
+
+
+/* 	start = 0;
 	len = ft_strchr(buffer, '\n');
 	printf("Valor de len: %d\n", len);
 	
 	result = ft_substr(buffer, start, len + 1);
 	printf("Valor final: %s\n\n", result);
-	return (result);
+	return (result); */
+	return ("TUT");
 }
 
 	//------MEMORIA para el BUFFER------//

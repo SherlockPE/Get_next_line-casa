@@ -3,16 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
+/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:37 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/13 21:13:41 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/14 17:58:49 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int   ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if(!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] != (unsigned char)c)
+		return (0);
+	return ((char *)&s[i]);
+}
+
+/* int   ft_strchr(const char *s, int c)
 {
     int    i;
 
@@ -26,12 +44,42 @@ int   ft_strchr(const char *s, int c)
     if (s[i] != (unsigned char)c)
         return (0);
     return (i);
-}
+} */
+
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	int		size_s1;
+// 	int		size_s2;
+// 	char	*str;
+// 	int		i;
+// 	int		j;
+
+
+// 	while (s1 && s1[size_s1] != '\0')
+// 		size_s1++;
+// 	while (s2 && s2[size_s2] != '\0')
+// 		size_s2++;
+// 	size_s2 = ft_strlen(s2);
+// 	str = malloc(size_s1 + size_s2 + 1);
+// 	if (str == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	j = 0;
+// 	while (i < size_s1)
+// 		str[i++] = s1[j++];
+// 	j = 0;
+// 	while (j < size_s2)
+// 		str[i++] = s2[j++];
+// 	str[i] = '\0';
+// 	return (str);
+// }
 
 size_t	ft_strlen(const char *s)
 {
 	int	i;
 
+	if(!s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 		i++;
