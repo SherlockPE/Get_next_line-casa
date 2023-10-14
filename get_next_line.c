@@ -6,14 +6,11 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 14:34:52 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:05:20 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 20
-#endif
 
 char	*get_next_line(int fd)
 {
@@ -36,7 +33,7 @@ char	*get_next_line(int fd)
 	// printf("El buffer tiene memoria\n");
 
 	//------LEER EL ARCHIVO------//
-	data = read(fd, &buffer, BUFFER_SIZE);
+	data = read(fd, buffer, BUFFER_SIZE);
 	if (data == -1)
 	{
 		printf("Error al leer el archivo (read)");
