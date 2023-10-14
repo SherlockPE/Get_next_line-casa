@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 15:05:20 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:53:35 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ char	*get_next_line(int fd)
 
 	//------INICIO------//
 	printf("El programa está ejecutando get_next_line\n");
-	
-	//------MEMORIA para el BUFFER------//
-	// char *buffer = (char *)malloc(BUFFER_SIZE);
-	// if (!buffer)
-	// {
-	// 	printf("No se pudo crear memoria en el buffer\n");
-	// 	return (0);
-	// }
-	// printf("El buffer tiene memoria\n");
 
 	//------LEER EL ARCHIVO------//
 	data = read(fd, buffer, BUFFER_SIZE);
@@ -49,7 +40,16 @@ char	*get_next_line(int fd)
 	len = ft_strchr(buffer, '\n');
 	printf("Valor de len: %d\n", len);
 	
-	result = ft_substr(buffer, start, len);
-	printf("Valor final: %s\n", result);
+	result = ft_substr(buffer, start, len + 1);
+	printf("Valor final: %s\n\n", result);
 	return (result);
 }
+
+	//------MEMORIA para el BUFFER------//
+	// char *buffer = (char *)malloc(BUFFER_SIZE);
+	// if (!buffer)
+	// {
+	// 	printf("No se pudo crear memoria en el buffer\n");
+	// 	return (0);
+	// }
+	// printf("El buffer tiene memoria\n");
