@@ -6,11 +6,29 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 18:00:39 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:26:00 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*ft_create_line(char *str)
+{
+	int i;
+	char *result;
+
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	result = (char *)malloc(i + 2);
+	result[i + 1] = 0;
+	while (i >= 0)
+	{
+		result[i] = str[i];
+		i--;
+	}
+	return (result);
+}
 
 char	*get_next_line(int fd)
 {
