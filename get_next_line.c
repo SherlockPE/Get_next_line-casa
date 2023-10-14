@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 18:26:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:28:32 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*get_next_line(int fd)
 	int data;
 	char temp[BUFFER_SIZE + 1];
 	static char *buffer;
+	char *result;
 
 	//------LEER EL ARCHIVO------//
 	while (!ft_strchr(buffer, '\n'))
@@ -48,12 +49,9 @@ char	*get_next_line(int fd)
 	//------VALOR DE LA LECTURA------//
 	printf("Valor del buffer: %s\n", buffer);
 
-
-	
 	//------CREAR SUBSTRING------//
+	result = ft_create_line(buffer);
 	
-
-
 
 /* 	start = 0;
 	len = ft_strchr(buffer, '\n');
@@ -62,7 +60,7 @@ char	*get_next_line(int fd)
 	result = ft_substr(buffer, start, len + 1);
 	printf("Valor final: %s\n\n", result);
 	return (result); */
-	return ("TUT");
+	return (result);
 }
 
 	//------MEMORIA para el BUFFER------//
