@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
+/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/13 22:40:14 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/14 14:34:52 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ char	*get_next_line(int fd)
 	int start;
 	int len;
 	char *result;
-	// char *buffer;
+	static char buffer[BUFFER_SIZE];
 
-	//INICIO
+	//------INICIO------//
 	printf("El programa está ejecutando get_next_line\n");
 	
-	//MEMORIA para el BUFFER
-	char *buffer = (char *)malloc(BUFFER_SIZE);
-	if (!buffer)
-	{
-		printf("No se pudo crear memoria en el buffer\n");
-		return (0);
-	}
-	printf("El buffer tiene memoria\n");
+	//------MEMORIA para el BUFFER------//
+	// char *buffer = (char *)malloc(BUFFER_SIZE);
+	// if (!buffer)
+	// {
+	// 	printf("No se pudo crear memoria en el buffer\n");
+	// 	return (0);
+	// }
+	// printf("El buffer tiene memoria\n");
 
-	//LEER EL ARCHIVO
+	//------LEER EL ARCHIVO------//
 	data = read(fd, &buffer, BUFFER_SIZE);
 	if (data == -1)
 	{
@@ -44,10 +44,10 @@ char	*get_next_line(int fd)
 	}
 	printf("Archivo leido bien (read)\n");
 
-	//VALOR DE LA LECTURA
+	//------VALOR DE LA LECTURA------//
 	printf("Valor del buffer: %s\n", buffer);
 	
-	//CREAR SUBSTRING
+	//------CREAR SUBSTRING------//
 	start = 0;
 	len = ft_strchr(buffer, '\n');
 	printf("Valor de len: %d\n", len);
