@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 14:35:24 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:45:15 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	main(int argc, char *argv[])
 	
 	//------Imprimir las lineas------//
 	
-	printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
 	
-	// i = 6;
-	// while (i--)
-	// {
-	// 	printf("Llamando a la funcion get_next_line...)\n");
-	// 	printf("%s\n", get_next_line(fd));
-	// }
-	// return (0);
+	i = 6;
+	while (i--)
+	{
+		printf("Llamando a la funcion get_next_line...)\n");
+		printf("%s\n", get_next_line(fd));
+	}
+	return (0);
 }
