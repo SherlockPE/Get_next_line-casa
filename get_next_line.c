@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/15 16:40:31 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/15 19:16:16 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,27 @@ static char	*ft_create_line(char *str)
 	return (result);
 }
 
+char    *ft_delete_garbage(char *str)
+{
+    static char    res[BUFFER_SIZE];
+    int     i;
+    int     j;
+
+    i = 0;
+    j = 0;
+    
+    while (str[i] != '\n' && str[i])
+      i++;
+    while (str[++i] != '\n' && str[i])
+    {
+      res[j] = str[i];
+      j++;
+    }
+    res[j] = str[i];
+    return (res);
+}
+
+
 char	*get_next_line(int fd)
 {
 	int data;
@@ -46,28 +67,8 @@ char	*get_next_line(int fd)
 		buffer = ft_strjoin(buffer, temp);
 	}
 
-	//------VALOR DE LA LECTURA------//
-	// printf("Valor del buffer: %s\n", buffer);
-
 	//------CREAR SUBSTRING------//
 	result = ft_create_line(buffer);
-	
-
-/* 	start = 0;
-	len = ft_strchr(buffer, '\n');
-	printf("Valor de len: %d\n", len);
-	
-	result = ft_substr(buffer, start, len + 1);
-	printf("Valor final: %s\n\n", result);
-	return (result); */
+	buffer = ft_delete_garbage(buffer);
 	return (result);
 }
-
-	//------MEMORIA para el BUFFER------//
-	// char *buffer = (char *)malloc(BUFFER_SIZE);
-	// if (!buffer)
-	// {
-	// 	printf("No se pudo crear memoria en el buffer\n");
-	// 	return (0);
-	// }
-	// printf("El buffer tiene memoria\n");

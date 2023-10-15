@@ -16,6 +16,10 @@ clean:
 	@rm ./a.out
 	@echo eliminao nwn
 
+debug:
+	gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=10 -g3
+	lldb -- a.out prueba.txt
+
 # all:
 # 	@gcc -Wall -Wextra -Werror macros.c
 # 	@./a.out
