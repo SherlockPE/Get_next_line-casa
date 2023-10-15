@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:37 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 18:12:40 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:01:51 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ char	*ft_strchr(const char *s, int c)
 		return (0);
 	return ((char *)&s[i]);
 }
-
-/* int   ft_strchr(const char *s, int c)
-{
-    int    i;
-
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] == (unsigned char)c)
-            return (i);
-        i++;
-    }
-    if (s[i] != (unsigned char)c)
-        return (0);
-    return (i);
-} */
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

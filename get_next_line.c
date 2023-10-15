@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/14 18:28:32 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/15 16:40:31 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ char	*get_next_line(int fd)
 			return (0);
 		buffer = ft_strjoin(buffer, temp);
 	}
-	
+
 	//------VALOR DE LA LECTURA------//
-	printf("Valor del buffer: %s\n", buffer);
+	// printf("Valor del buffer: %s\n", buffer);
 
 	//------CREAR SUBSTRING------//
 	result = ft_create_line(buffer);
