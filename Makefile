@@ -5,21 +5,27 @@
 # OBJ = $(SRC:.c=.o)
 
 all:
-	gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c
-	./a.out prueba.txt
+	@gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c
+	@./a.out prueba.txt
 
 size:
-	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c get_next_line.h
+	@gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c get_next_line.h
 	@./a.out	
 
 clean:
 	@rm ./a.out
-	@echo eliminao nwn
+	@rm -rf a.out.dSYM
+	@echo eliminaos nwn
 
 debug:
-	gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=10 -g3
-	lldb -- a.out prueba.txt
+	@gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=10 -g3
+	@lldb -- a.out prueba.txt
 
+# clean:
+# 	@rm -rf a.out
+
+# re:
+# 	clean all
 # all:
 # 	@gcc -Wall -Wextra -Werror macros.c
 # 	@./a.out

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/16 15:28:11 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:41:51 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static char	*ft_create_line(char *str)
 
 char	*ft_delete_garbage(char *str)
 {
-	int		i;
-	int		size;
-	char	result[BUFFER_SIZE];
+	int			i;
+	int			size;
+	static char	result[BUFFER_SIZE];
 
 	size = 0;
 	while (str[size] != '\n')
