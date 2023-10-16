@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/16 17:41:26 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:47:07 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 	
 	int i;
 	char * line;
-	system("leaks a.out");
+	//system("leaks a.out");
 	//------Obtener un file descriptor------//
 	int fd;
 	fd = open(argv[1], O_RDONLY);
