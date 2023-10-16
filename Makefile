@@ -20,7 +20,10 @@ clean:
 debug:
 	@gcc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=10 -g3
 	@lldb -- a.out prueba
-
+re:
+	make clean
+	make all
+	
 re_debug:
 	make clean
 	make debug

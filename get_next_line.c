@@ -6,22 +6,27 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/16 17:08:35 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:34:58 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_create_line(char *str)
+char	*ft_create_line(char *str)
 {
 	int		i;
 	char	*result;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] != '\n' && str[i])
 		i++;
-	result = (char *)malloc(i + 2);
-	result[i + 1] = 0;
+	if (!str[i])
+		result = (char *)malloc(i + 1);
+	else
+	{
+		result = (char *)malloc(i + 2);
+		result[i + 1] = 0;
+	}
 	while (i >= 0)
 	{
 		result[i] = str[i];
@@ -40,11 +45,11 @@ char	*ft_delete_garbage(char *str)
 	while (str[size] != '\n')
 		size++;
 	size++;
+	i = 0;
 	if (str[size] == 0)
 	{
 		result[0] = 0;
 	}
-	i = 0;
 	while (str[size])
 	{
 		result[i++] = str[size];
