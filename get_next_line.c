@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/15 19:16:16 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:28:11 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	*ft_create_line(char *str)
 {
-	int i;
-	char *result;
+	int		i;
+	char	*result;
 
 	i = 0;
 	while (str[i] != '\n')
@@ -30,33 +30,32 @@ static char	*ft_create_line(char *str)
 	return (result);
 }
 
-char    *ft_delete_garbage(char *str)
+char	*ft_delete_garbage(char *str)
 {
-    static char    res[BUFFER_SIZE];
-    int     i;
-    int     j;
+	int		i;
+	int		size;
+	char	result[BUFFER_SIZE];
 
-    i = 0;
-    j = 0;
-    
-    while (str[i] != '\n' && str[i])
-      i++;
-    while (str[++i] != '\n' && str[i])
-    {
-      res[j] = str[i];
-      j++;
-    }
-    res[j] = str[i];
-    return (res);
+	size = 0;
+	while (str[size] != '\n')
+		size++;
+	size++;
+	i = 0;
+	while (str[size])
+	{
+		printf("%c", str[size]);
+		result[i++] = str[size];
+		size++;
+	}
+	return (result);
 }
-
 
 char	*get_next_line(int fd)
 {
-	int data;
-	char temp[BUFFER_SIZE + 1];
-	static char *buffer;
-	char *result;
+	int			data;
+	char		temp[BUFFER_SIZE + 1];
+	static char	*buffer;
+	char		*result;
 
 	//------LEER EL ARCHIVO------//
 	while (!ft_strchr(buffer, '\n'))
@@ -66,7 +65,6 @@ char	*get_next_line(int fd)
 			return (0);
 		buffer = ft_strjoin(buffer, temp);
 	}
-
 	//------CREAR SUBSTRING------//
 	result = ft_create_line(buffer);
 	buffer = ft_delete_garbage(buffer);
