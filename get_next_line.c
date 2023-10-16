@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/16 16:41:51 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:08:35 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ char	*ft_delete_garbage(char *str)
 	while (str[size] != '\n')
 		size++;
 	size++;
+	if (str[size] == 0)
+	{
+		result[0] = 0;
+	}
 	i = 0;
 	while (str[size])
 	{
-		printf("%c", str[size]);
 		result[i++] = str[size];
 		size++;
 	}
