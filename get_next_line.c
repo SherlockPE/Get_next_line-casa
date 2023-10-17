@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/16 18:34:58 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:13:53 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char	*ft_create_line(char *str)
 
 char	*ft_delete_garbage(char *str)
 {
-	int			i;
-	int			size;
-	static char	result[BUFFER_SIZE];
+	int		i;
+	int		size;
+	char	result[BUFFER_SIZE];
 
 	size = 0;
 	while (str[size] != '\n')
@@ -61,20 +61,20 @@ char	*ft_delete_garbage(char *str)
 char	*get_next_line(int fd)
 {
 	int			data;
-	char		temp[BUFFER_SIZE + 1];
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE];
+	char		*temporal;
 	char		*result;
 
 	//------LEER EL ARCHIVO------//
-	while (!ft_strchr(buffer, '\n'))
+	while (!ft_strchr(temporal, '\n'))
 	{
-		data = read(fd, temp, BUFFER_SIZE);
+		data = read(fd, buffer, BUFFER_SIZE);
 		if (data == -1)
 			return (0);
-		buffer = ft_strjoin(buffer, temp);
+		temporal = ft_strjoin(temporal, buffer);
 	}
 	//------CREAR SUBSTRING------//
-	result = ft_create_line(buffer);
-	buffer = ft_delete_garbage(buffer);
+	result = ft_create_line(temporal);
+	temporal = ft_delete_garbage(temporal);
 	return (result);
 }
