@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:51:16 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/17 17:33:15 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:51:23 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ char	*get_next_line(int fd)
 	char		*temporal;
 
 	data = 7;
-	//------ASIGNAR MEMORIA AL BUFFER------//
+//------ASIGNAR MEMORIA AL BUFFER------//
 	buffer = malloc(BUFFER_SIZE + 1);
 	//------LEER EL ARCHIVO------//
 	while (!ft_strchr(result, '\n') && data)
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
-		if (data == -1)
+		if (data == -1 || !data)
 			return (0);
 		result = ft_strjoin(result, buffer);
+		free(buffer);
 	}
-	//------CREAR SUBSTRING------//
+//------CREAR SUBSTRING------//
 	temporal = ft_create_line(result);
 	result = ft_delete_garbage(result);
-	free(buffer);
 	return (temporal);
 }
