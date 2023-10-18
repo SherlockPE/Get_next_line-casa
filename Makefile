@@ -29,4 +29,4 @@ re_debug:
 	make debug
 
 
-.PHONY: all size clean debug re_debug
+.PHONY: all size clean debug re re_debug
