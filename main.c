@@ -5,36 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 09:02:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/10/18 21:51:30 by fabriciolop      ###   ########.fr       */
+/*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
+/*   Updated: 2023/10/18 23:30:41 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	main(int argc, char *argv[])
+int main(int argc, char const *argv[])
 {
-	(void)argc;
-	int i;
-	char * line;
-	//system("leaks a.out");
-	//------Obtener un file descriptor------//
-	int fd;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{		
-		printf("Error al abrir el archivo (open)\n");
-		return (0);
-	}
+	int		i;
+	int		fd;
+	char	*line;
 	
-	//------Imprimir las lineas------//
-	i = 4;
-	while (i--)
+	(void)argc;
+	//Obtener un file descriptor
+	fd = open(argv[1]);
+	if (fd == -1)
+		return (0);
+	
+	//Llamar a la funcion N veces
+	i = (int)argv[2];
+	while (i > 0)
 	{
-		printf("Llamando a la funcion get_next_line...)\n");
 		line = get_next_line(fd);
-		printf("%s", line);
-		free(line);
-	}
-	return (0);
+		i--;
+	}	
+	return 0;
 }
