@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
+/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/18 23:30:41 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/19 16:27:00 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ int main(int argc, char const *argv[])
 	
 	(void)argc;
 	//Obtener un file descriptor
-	fd = open(argv[1]);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (0);
 	
 	//Llamar a la funcion N veces
-	i = (int)argv[2];
+	i = atoi(argv[2]);
 	while (i > 0)
 	{
 		line = get_next_line(fd);
+		printf("%s\n", line);
+		// free(line);
 		i--;
 	}	
 	return 0;
