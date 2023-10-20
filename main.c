@@ -6,7 +6,7 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/20 17:11:22 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/20 20:53:28 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int main(int argc, char const *argv[])
 	while (i > 0)
 	{
 		line = get_next_line(fd);
-		printf("%s\n", line);
+		printf("%s", line);
 		free(line);
 		i--;
 	}
+	close(fd);
 	return 0;
 }
