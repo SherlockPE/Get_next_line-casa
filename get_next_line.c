@@ -6,35 +6,33 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/20 21:07:55 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/20 21:38:47 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_archive(char *buffer,int fd)
+void    read_archive(char *src, char *buffer,int fd)
 {
 	ssize_t 	data;
-	char	*result;
 
 	data = 1;
-	result = "";
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (0);
+		return ;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
 		if (data <= 0)
 		{
 			free(buffer);
-			return (result);
+			return ;
 		}
 		buffer[data] = 0;
-		result = ft_strjoin(result, buffer);
+		src = ft_strjoin(src, buffer);
 	}
 	free(buffer);
-	return (result);
+	//return (src);
 }
 
 char    *create_line(char *str)
@@ -66,7 +64,7 @@ char    *free_and_delete(char *str)
     int   size;
     char  *result;
     int   final_size;
-    
+
     i = 0;
     while (str[i] != '\n' && str[i])
       i++;
@@ -85,10 +83,13 @@ char    *free_and_delete(char *str)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*buffer;
+	static char		*line;
+	char	        *buffer;
+    char            *result;
 	
-	line = read_archive(buffer, fd);
+    line = "";
+	//line = read_archive(buffer, fd);
+	read_archive(line, buffer, fd);
 	if (!line[0])
 		return (0);
 	result = create_line(line);
