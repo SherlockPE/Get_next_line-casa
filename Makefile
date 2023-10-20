@@ -5,28 +5,32 @@
 # OBJ = $(SRC:.c=.o)
 
 all:
-	@gcc -Wall -Wextra -Werror main.c gnl.c gnl_utils.c -D BUFFER_SIZE=20
+	@gcc main.c get_next_line.c get_next_line.h get_next_line_utils.c
 	@./a.out prueba.txt
 
 size:
-	@gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c gnl.c gnl_utils.c gnl.h
+	@gcc main.c get_next_line.c get_next_line.h get_next_line_utils.c
+	@echo compilando nwn
 	@./a.out	
 
 clean:
 	@rm ./a.out
+	@rm get_next_line.h.gch 
 	@rm -rf a.out.dSYM
 	@echo eliminaos nwn
 
 debug:
-	@gcc -Wall -Wextra -Werror main.c gnl.c gnl_utils.c -D BUFFER_SIZE=20 -g3
-	@lldb -- a.out prueba.txt
+	@gcc main.c get_next_line.c get_next_line.h get_next_line_utils.c -g3
+	@echo Listop
+# @echo compilando nwn
+# @lldb -- a.out prueba.txt
+
 re:
 	make clean
 	make all
-	
+
 re_debug:
 	make clean
 	make debug
-
 
 .PHONY: all size clean debug re re_debug

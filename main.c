@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/19 16:27:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:11:22 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 	int		i;
 	int		fd;
 	char	*line;
-	
+
 	(void)argc;
 	//Obtener un file descriptor
 	fd = open(argv[1], O_RDONLY);
@@ -30,8 +30,8 @@ int main(int argc, char const *argv[])
 	{
 		line = get_next_line(fd);
 		printf("%s\n", line);
-		// free(line);
+		free(line);
 		i--;
-	}	
+	}
 	return 0;
 }
