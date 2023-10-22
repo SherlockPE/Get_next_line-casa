@@ -6,35 +6,42 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 11:40:42 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/22 12:20:41 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char    *free_and_return(char *buffer, char *result)
+{
+	free(buffer);
+	return(result);
+}
 
 char	*read_archive(char *buffer, int fd)
 {
 	ssize_t	data;
 	char	*result;
 
-	data = 1;
-	result = "";
-	buffer = (char *)malloc(BUFFER_SIZE + 1); //\n
+	result = 0;
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
+	if (!result)
+	{
+		result = "";
+		result = ft_strjoin(result, buffer);
+	}
+	data = 1;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
 		if (data <= 0)
-		{
-			free(buffer);
-			return (result);
-		}
+			return (free_and_return(buffer, result));
 		buffer[data] = 0;
-		result = ft_strjoin(result, buffer); //\n
+		result = ft_strjoin(result, buffer);
 	}
-	free(buffer);
-	return (result);
+	return (free_and_return(buffer, result));
 }
 
 char	*create_line(char *str)
