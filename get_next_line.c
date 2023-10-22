@@ -6,19 +6,22 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 18:09:38 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/22 20:33:19 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 char	*read_archive(char *buffer, int fd)
 {
 	ssize_t	data;
 	char	*result;
+	char	*aux;
 
 	data = 1;
-	result = "";
+	result = strdup("");
+	aux = result;
 	if (!buffer)
 	{
 		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
@@ -26,13 +29,18 @@ char	*read_archive(char *buffer, int fd)
 			return (0);
 	}
 	else
+	{
 		result = ft_strjoin(result, buffer);
+		free(aux);
+	}
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
 		if (data <= 0)
 			return (free(buffer), result);
+		aux = result;
 		result = ft_strjoin(result, buffer);
+		free(aux);
 		free (buffer);
 		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
 	}
@@ -44,7 +52,7 @@ char	*create_line(char *str)
 	char	*result;
 	int		i;
 
-	if (!str[0])
+	if (!str)
 		return (0);
 	i = 0;
 	while (str[i] != '\n' && str[i])
@@ -61,7 +69,6 @@ char	*create_line(char *str)
 		result[i] = str[i];
 		i--;
 	}
-	// str = free_and_delete(str);
 	return (result);
 }
 char	*free_and_delete(char *str)
@@ -71,7 +78,7 @@ char	*free_and_delete(char *str)
 	char	*result;
 	int		final_size;
 
-	if (!str[0])
+	if (!str)
 		return (0);
 	i = 0;
 	while (str[i] != '\n' && str[i])
@@ -79,12 +86,8 @@ char	*free_and_delete(char *str)
 	size = ft_strlen(str);
 	final_size = size - i;
 	result = malloc(final_size);
-	// j = 0;
 	while (--final_size >= 0)
-	{
 		result[final_size] = str[size--];
-		// size--;
-	}
 	free(str);
 	return (result);
 }
@@ -94,11 +97,14 @@ char	*get_next_line(int fd)
 	static char	*line;
 	char		*result;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	line = read_archive(line, fd);
-	// if (!line[0])
-	// 	return (0);
+	if (!*line)
+		return free(line), NULL;
 	result = create_line(line);
 	line = free_and_delete(line);
+	//system("leaks -q a.out");
 	return (result);
 }
 
