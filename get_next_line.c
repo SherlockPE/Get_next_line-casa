@@ -6,17 +6,11 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 12:38:12 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:08:00 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char    *free_and_return(char *buffer, char *result)
-{
-	free(buffer);
-	return(result);
-}
 
 char	*read_archive(char *buffer, int fd)
 {
@@ -27,21 +21,21 @@ char	*read_archive(char *buffer, int fd)
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
-		if (!result)
-		{
-			result = "";
-			result = ft_strjoin(result, buffer);
-		}
+	if (!result)
+	{
+		result = "";
+		result = ft_strjoin(result, buffer);
+	}
 	data = 1;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
 		if (data <= 0)
-			return (free_and_return(buffer, result));
+			return (free(buffer), result);
 		buffer[data] = 0;
 		result = ft_strjoin(result, buffer);
 		}
-	return (free_and_return(buffer, result));
+	return (free(buffer), result);
 }
 
 char	*create_line(char *str)
