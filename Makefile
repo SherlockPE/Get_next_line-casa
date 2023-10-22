@@ -3,10 +3,10 @@
 
 # SRC = get_next_line.c
 # OBJ = $(SRC:.c=.o)
+#
 
 all:
-	@gcc main.c get_next_line.c get_next_line.h get_next_line_utils.c
-	@./a.out prueba.txt
+	gcc $(CFLAGS) main.c get_next_line.c get_next_line.h get_next_line_utils.c
 
 size:
 	@gcc main.c get_next_line.c get_next_line.h get_next_line_utils.c
@@ -32,5 +32,9 @@ re:
 re_debug:
 	make clean
 	make debug
+
+bf: CFLAGS += -D BUFFER_SIZE=$(bf)
+bf: CFLAGS += -g3
+bf: all
 
 .PHONY: all size clean debug re re_debug

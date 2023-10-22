@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 13:08:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:05:55 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,19 @@ char	*read_archive(char *buffer, int fd)
 	ssize_t	data;
 	char	*result;
 
-	result = 0;
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (0);
-	if (!result)
 	{
-		result = "";
-		result = ft_strjoin(result, buffer);
+		buffer = (char *)calloc(BUFFER_SIZE + 1, 1);
+		if (!buffer)
+			return (0);
 	}
 	data = 1;
+	result = "";
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
 		if (data <= 0)
 			return (free(buffer), result);
-		buffer[data] = 0;
 		result = ft_strjoin(result, buffer);
 		}
 	return (free(buffer), result);
@@ -91,10 +88,9 @@ char	*free_and_delete(char *str)
 char	*get_next_line(int fd)
 {
 	static char	*line;
-	char		*buffer;
 	char		*result;
 
-	line = read_archive(buffer, fd);
+	line = read_archive(line, fd);
 	// if (!line[0])
 	// 	return (0);
 	result = create_line(line);

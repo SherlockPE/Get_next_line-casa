@@ -6,7 +6,7 @@
 /*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/20 20:53:28 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/22 13:27:58 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int main(int argc, char const *argv[])
 	int		fd;
 	char	*line;
 
-	(void)argc;
 	//Obtener un file descriptor
+	if (argc < 3)
+		return printf("invalid arguments\n"), 1;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (perror(argv[1]), 1);
 	
 	//Llamar a la funcion N veces
 	i = atoi(argv[2]);
