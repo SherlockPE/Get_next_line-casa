@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 14:05:55 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:44:17 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*read_archive(char *buffer, int fd)
 
 	if (!buffer)
 	{
-		buffer = (char *)calloc(BUFFER_SIZE + 1, 1);
+		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
 		if (!buffer)
 			return (0);
 	}

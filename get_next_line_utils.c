@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
+/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:24:01 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/20 17:10:41 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2023/10/22 14:43:09 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*b2;
+
+	b2 = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+		b2[i++] = c;
+	return (b2);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (0);
+	ft_memset(ptr, '\0',count * size);	
+	return (ptr);
+}
 
 size_t	ft_strlen(const char *s)
 {
