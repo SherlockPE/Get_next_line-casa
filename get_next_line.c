@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/23 10:00:13 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:55:03 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char	*free_and_delete(char *str)
 		i++;
 	size = ft_strlen(str);
 	final_size = size - i;
+	if (!final_size)
+		return (free(str), NULL);
 	result = malloc(final_size);
 	while (--final_size >= 0)
 		result[final_size] = str[size--];
