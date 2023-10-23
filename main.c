@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 20:31:31 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:47:12 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ int main(int argc, char const *argv[])
 	
 	//Llamar a la funcion N veces
 	i = atoi(argv[2]);
-	// while (i > 0)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("%s\n%p\n", line, line);
-	// 	free(line);
-	// 	i--;
-	// }
-	while ((line = get_next_line(fd)))
+	while (i > 0)
 	{
+		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
+		i--;
 	}
+	// while ((line = get_next_line(fd)))
+	// {
+	// 	printf("%s", line);
+	// 	free(line);
+	// }
 	close(fd);
-	system("leaks -q a.out");
+	//system("leaks -q a.out");
 	return 0;
 }

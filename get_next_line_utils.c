@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:24:01 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 20:09:53 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:01:09 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ size_t	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return 0;
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -76,7 +78,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	i = 0;
 	j = 0;
-	while (i < size_s1)
+	while (s1 && i < size_s1)
 		str[i++] = s1[j++];
 	j = 0;
 	while (j < size_s2)

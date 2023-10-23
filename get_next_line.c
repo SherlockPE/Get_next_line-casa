@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/22 20:33:19 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:00:13 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ char	*read_archive(char *buffer, int fd)
 	char	*aux;
 
 	data = 1;
-	result = strdup("");
-	aux = result;
+	/*result = strdup("");
+	aux = result;*/
+	result = NULL; /**/
 	if (!buffer)
 	{
 		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
@@ -30,13 +31,16 @@ char	*read_archive(char *buffer, int fd)
 	}
 	else
 	{
+		aux = result; /**/
 		result = ft_strjoin(result, buffer);
 		free(aux);
 	}
 	while (!ft_strchr(buffer, '\n'))
 	{
 		data = read(fd, buffer, BUFFER_SIZE);
-		if (data <= 0)
+		if (data < 0)
+			return (free(buffer), NULL);
+		if (data == 0)
 			return (free(buffer), result);
 		aux = result;
 		result = ft_strjoin(result, buffer);
@@ -97,11 +101,17 @@ char	*get_next_line(int fd)
 	static char	*line;
 	char		*result;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	line = read_archive(line, fd);
-	if (!*line)
-		return free(line), NULL;
+	if (!line)
+		return NULL;
+	else if(!*line)
+	{
+		free(line);
+		//line = NULL;
+		return NULL;	
+	}
 	result = create_line(line);
 	line = free_and_delete(line);
 	//system("leaks -q a.out");
