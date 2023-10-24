@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/23 11:57:42 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:10:18 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
 	{
 		line = get_next_line(fd);
 		if (!line)
-			printf("\n%s", line);
+			printf("%s", line);
 		else
 		{
 			printf("%s", line);

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/23 11:55:03 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:33:41 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,25 @@
 
 char	*read_archive(char *buffer, int fd)
 {
-	ssize_t	data;
-	char	*result;
-	char	*aux;
+	int	data;
+	char *temp;
+	char *aux;
 
 	data = 1;
-	/*result = strdup("");
-	aux = result;*/
-	result = NULL; /**/
-	if (!buffer)
+	temp = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
+	while (!ft_strchr(buffer, '\n') && data)
 	{
-		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
-		if (!buffer)
-			return (0);
-	}
-	else
-	{
-		aux = result; /**/
-		result = ft_strjoin(result, buffer);
-		free(aux);
-	}
-	while (!ft_strchr(buffer, '\n'))
-	{
-		data = read(fd, buffer, BUFFER_SIZE);
+		data = read(fd, temp, BUFFER_SIZE);
 		if (data < 0)
-			return (free(buffer), NULL);
+			return (free(temp), free(buffer), buffer = NULL, NULL);
 		if (data == 0)
-			return (free(buffer), result);
-		aux = result;
-		result = ft_strjoin(result, buffer);
+			return (free(temp), buffer);
+		temp[data] = 0;
+		aux = buffer;
+		buffer = ft_strjoin(buffer, temp);
 		free(aux);
-		free (buffer);
-		buffer = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
 	}
-	return (free(buffer), result);
+	return (free(temp), temp = NULL ,buffer);
 }
 
 char	*create_line(char *str)
@@ -62,12 +47,11 @@ char	*create_line(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	if (!str[i])
-		result = malloc(i + 1);
+		result = ft_calloc(i + 1, 1);
 	else
-	{
-		result = malloc(i + 2);
-		result[i + 1] = 0;
-	}
+		result = ft_calloc(i + 2, 1);
+	if (!result)
+		return (free(str), str = NULL, NULL);
 	while (i >= 0)
 	{
 		result[i] = str[i];
@@ -95,6 +79,7 @@ char	*free_and_delete(char *str)
 	while (--final_size >= 0)
 		result[final_size] = str[size--];
 	free(str);
+	str = NULL;
 	return (result);
 }
 
@@ -111,7 +96,7 @@ char	*get_next_line(int fd)
 	else if(!*line)
 	{
 		free(line);
-		//line = NULL;
+		line = NULL;
 		return NULL;	
 	}
 	result = create_line(line);

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:24:01 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/23 09:01:09 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:56:53 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s || !c)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == (unsigned char)c)
