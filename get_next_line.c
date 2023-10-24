@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/24 16:33:41 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:37:14 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*read_archive(char *buffer, int fd)
 	{
 		data = read(fd, temp, BUFFER_SIZE);
 		if (data < 0)
-			return (free(temp), free(buffer), buffer = NULL, NULL);
+			return (free(temp), free(buffer), NULL);
 		if (data == 0)
 			return (free(temp), buffer);
 		temp[data] = 0;
@@ -47,9 +47,9 @@ char	*create_line(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	if (!str[i])
-		result = ft_calloc(i + 1, 1);
+		result = (char *)ft_calloc(i + 1, 1);
 	else
-		result = ft_calloc(i + 2, 1);
+		result = (char *)ft_calloc(i + 2, 1);
 	if (!result)
 		return (free(str), str = NULL, NULL);
 	while (i >= 0)
@@ -75,12 +75,10 @@ char	*free_and_delete(char *str)
 	final_size = size - i;
 	if (!final_size)
 		return (free(str), NULL);
-	result = malloc(final_size);
+	result = (char *)ft_calloc(final_size, 1);
 	while (--final_size >= 0)
 		result[final_size] = str[size--];
-	free(str);
-	str = NULL;
-	return (result);
+	return (free(str), str = NULL, result);
 }
 
 char	*get_next_line(int fd)
@@ -89,17 +87,15 @@ char	*get_next_line(int fd)
 	char		*result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
+		return (free(line), line = NULL, NULL);
 	line = read_archive(line, fd);
 	if (!line)
-		return NULL;
-	else if(!*line)
-	{
-		free(line);
-		line = NULL;
-		return NULL;	
-	}
+		return (line = NULL, NULL);
+	else if(!line[0])
+		return (free(line), line = NULL, NULL);
 	result = create_line(line);
+	if (!result)
+		return (NULL);
 	line = free_and_delete(line);
 	//system("leaks -q a.out");
 	return (result);
