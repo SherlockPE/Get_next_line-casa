@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:59 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/24 16:10:18 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:29:08 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ int main(int argc, char const *argv[])
 		}
 		i--;
 	}
-	// while ((line = get_next_line(fd)))
-	// {
-	// 	printf("%s", line);
-	// 	free(line);
-	// }
 	close(fd);
+	//Descoment this to see your leaks
 	//system("leaks -q a.out");
 	return 0;
 }
+//- Fabri

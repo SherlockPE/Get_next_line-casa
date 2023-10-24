@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/24 17:37:14 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:27:56 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 char	*read_archive(char *buffer, int fd)
 {
-	int	data;
-	char *temp;
-	char *aux;
+	int		data;
+	char	*temp;
+	char	*aux;
 
 	data = 1;
 	temp = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
@@ -33,7 +33,7 @@ char	*read_archive(char *buffer, int fd)
 		buffer = ft_strjoin(buffer, temp);
 		free(aux);
 	}
-	return (free(temp), temp = NULL ,buffer);
+	return (free(temp), temp = NULL, buffer);
 }
 
 char	*create_line(char *str)
@@ -59,6 +59,7 @@ char	*create_line(char *str)
 	}
 	return (result);
 }
+
 char	*free_and_delete(char *str)
 {
 	int		i;
@@ -91,32 +92,17 @@ char	*get_next_line(int fd)
 	line = read_archive(line, fd);
 	if (!line)
 		return (line = NULL, NULL);
-	else if(!line[0])
+	else if (!line[0])
 		return (free(line), line = NULL, NULL);
 	result = create_line(line);
 	if (!result)
 		return (NULL);
 	line = free_and_delete(line);
-	//system("leaks -q a.out");
 	return (result);
 }
-
-// I need:
-// 1.- Funcion de lectura: char 		*read_archive(fd, char *str);
-// 2.- Funcion de creación de linea: char	*create_line(char *str);
-// 3.- Funcion de eliminación de basura restante
-
-// int main() {
-
-//   static char *line;
-//   char  *result;
-
-//   line = (char *)malloc(13);
-//   strcpy(line, "Hola\nque\ntal");
-
-//   result = create_line(line);
-//   line = free_and_delete(line);
-
-//   printf("%s", result);
-//   return (0);
-// }
+/* 
+I need:
+1.- Funcion de lectura: char 		*read_archive(fd, char *str);
+2.- Funcion de creación de linea: char	*create_line(char *str);
+3.- Funcion de eliminación de basura restante
+ */

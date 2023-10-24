@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:24:01 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/24 15:56:53 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:28:27 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	*ft_memset(void *b, int c, size_t len)
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
-	
+
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (0);
-	ft_memset(ptr, '\0',count * size);	
+	ft_memset(ptr, '\0', count * size);
 	return (ptr);
 }
 
@@ -41,7 +41,7 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	if (!s)
-		return 0;
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
