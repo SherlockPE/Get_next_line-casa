@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/25 18:11:34 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:48:04 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <string.h>
 
 char	*read_archive(char *buffer, int fd)
@@ -86,20 +86,20 @@ char	*free_and_delete(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*line[OPEN_MAX];
 	char		*result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = read_archive(line, fd);
-	if (!line)
-		return (line = NULL, NULL);
-	else if (!line[0])
-		return (free(line), line = NULL, NULL);
-	result = create_line(line);
+	line[fd] = read_archive(line[fd], fd);
+	if (!line[fd])
+		return (line[fd] = NULL, NULL);
+	else if (!line[fd][0])
+		return (free(line[fd]), line[fd] = NULL, NULL);
+	result = create_line(line[fd]);
 	if (!result)
-		return (free(line), line = NULL, NULL);
-	line = free_and_delete(line);
+		return (free(line[fd]), line[fd] = NULL, NULL);
+	line[fd] = free_and_delete(line[fd]);
 	return (result);
 }
 /* 
@@ -108,3 +108,26 @@ I need:
 2.- Funcion de creación de linea: char	*create_line(char *str);
 3.- Funcion de eliminación de basura restante
  */
+
+// int main(int argc, char const *argv[])
+// {
+// 	int		i;
+// 	int		fd;
+// 	char	*line;
+// 	int temp = argc;
+
+// 	i = 50;
+// 	fd = open (argv[--argc], O_RDONLY);
+	
+// 	// while (i-- && --argc)
+// 	// {
+// 	// 	line = get_next_line(fd);
+// 	// 	printf("%s", line);
+// 	// 	if (line)
+// 	// 		free(line);
+// 	// 	fd = open (argv[argc], O_RDONLY);
+// 	// 	if (argc == 1)
+// 	// 		argc = temp;
+// 	// }
+// 	return 0;
+// }
